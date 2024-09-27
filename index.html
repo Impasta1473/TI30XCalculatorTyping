@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TI-83X Calculator Typing</title>
+</head>
+<body>
+  <center>
+    <h1 width="65%">TI-83X Calculator Typing Tool</h1><br><hr width="25%">
+    <textarea width="50%" style="border-style: none; height: 100px; resize: none; width: 25%">A tool for when you’re bored in Math Class. Notes: Only letters and spaces are supported, and this ONLY works with TI-30X calculators, not iPhone calculators. There is also a maximum output here of 88 characters, due to the same limit being on those TI-30X calculators. Excess characters will be cut off.</textarea><br>
+    <hr width="25%">
+    <br>
+    <label for="input">Input</label><br><br><input type="text" id="input" placeholder="Hello World"><br><br>
+    <button onclick="fil()">Convert</button><br><hr width="25%"><br>
+    <label for="output" id="outLbl" style="display: none">Output</label>
+    <h2 id="output"></h2><br><hr width="25%" style="display: none" id="a">
+    <label for="steps" id="stepsTitle"style="display: none">Steps</label>
+    <p id="steps" style="text-align: left; display: none; font-style: bold;"></p><br><hr width="25%" style="display: none" id="b">
+    <p style="display: inline-block; font-style: normal; font-size: 10px;">© Copyright 2024 LegitStuff. All rights reserved</p>
+    <script>
+    		const stepsKey = {
+    		"A": "STO>, A",
+    		"B": "STO>, B",
+    		"C": "STO>, C",
+    		"D": "STO>, D",
+    		"E": "STO>, E",
+    		"F": "PRB, !, °′″",
+    		"G": "6",
+   			"H": "1, -, 1",
+   			"I": "1",
+    "J": "2nd, )",
+    "K": "1, 2nd, (",
+    "L": "PRB, !",
+    "M": "^, ^",
+    "N": "π",
+    "O": "0",
+    "P": "PRB, !, °′″, °",
+    "Q": "9",
+    "R": "°′″, r",
+    "S": "5",
+    "T": "+",
+    "U": "Aᵇ⁄₍",
+    "V": "°′″, ', ÷",
+    "W": "°′″, ', ^, °′″, '",
+    "X": "x",
+    "Y": "÷",
+    "Z": "2nd, %",
+    " ": "2nd, ˏ"
+    };
+    let isEmpty = true;
+        const keya = {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D",
+    "E": "E",
+    "F": "1 ‾",
+    "G": "6",
+    "H": "1-1",
+    "I": "1",
+    "J": ")",
+    "K": "1(",
+    "L": "!",
+    "M": "^^",
+    "N": "π",
+    "O": "0",
+    "P": "!°",
+    "Q": "9",
+    "R": "r",
+    "S": "5",
+    "T": "+",
+    "U": "⅃",
+    "V": "'/",
+    "W": "'^'",
+    "X": "*",
+    "Y": "/",
+    "Z": "%",
+    " ": ","
+    };
+    let step = "";
+    function format(inputa){
+    let output = "";
+    
+    for (let i = 0; i < inputa.length; i++){
+    const char = inputa[i];
+    if (keya[char] && output.length <= 87){
+    output += keya[char];
+    if (char === " "){
+    step += "__ " + ": ";
+    } else {
+    step += char + " : ";
+    }
+    step += stepsKey[char];
+    step += "<br>";
+    }
+    }
+    return output.trim();
+    }
+    function fil(){
+    const field = document.getElementById("input");
+    field.value = field.value.toUpperCase();
+    field.value = field.value.replace(/[^A-Z\s]/g, '');
+    if (isEmpty && field.value.length != 0){
+    isEmpty = true;
+    document.getElementById("outLbl").style.display = "block";
+    document.getElementById("stepsTitle").style.display = "block";
+    document.getElementById("steps").style.display = "inline-block";
+    document.getElementById("a").style.display = "block";
+    document.getElementById("b").style.display = "block";
+    }
+    document.getElementById("output").innerHTML = format(field.value);
+    document.getElementById("steps").innerHTML = step;
+    step = "";
+    }
+    </script>
+  </center>
+</body>
+</html>
